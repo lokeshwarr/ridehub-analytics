@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import StatCard from '@/components/StatCard';
 import PlatformCard from '@/components/PlatformCard';
 import DemandMap from '@/components/DemandMap';
-import { Bike, DollarSign, GasPump, Clock } from 'lucide-react';
+import { Bike, DollarSign, Fuel, Clock } from 'lucide-react';
 
 const Dashboard = () => {
   return (
@@ -28,7 +28,7 @@ const Dashboard = () => {
         <StatCard
           title="Fuel Efficiency"
           value="89%"
-          icon={<GasPump className="h-5 w-5 text-yellow-500" />}
+          icon={<Fuel className="h-5 w-5 text-yellow-500" />}
           trend={{ value: "4%", positive: true }}
         />
         <StatCard
