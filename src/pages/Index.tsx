@@ -1,11 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState } from 'react';
+import Dashboard from './Dashboard';
+import MapView from './MapView';
+import Analytics from './Analytics';
+import Profile from './Profile';
+import MobileNavbar from '@/components/MobileNavbar';
 
 const Index = () => {
+  const [activePath, setActivePath] = useState('/');
+
+  const renderContent = () => {
+    switch (activePath) {
+      case '/':
+        return <Dashboard />;
+      case '/map':
+        return <MapView />;
+      case '/analytics':
+        return <Analytics />;
+      case '/profile':
+        return <Profile />;
+      default:
+        return <Dashboard />;
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="bg-ridehub-background min-h-screen">
+      <div className="container px-4 py-4 pb-20 max-w-md mx-auto">
+        {renderContent()}
+        <MobileNavbar activePath={activePath} />
       </div>
     </div>
   );
