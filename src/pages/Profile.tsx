@@ -38,7 +38,7 @@ const Profile = () => {
             <div className="text-xs text-gray-500">Rides</div>
           </div>
           <div className="text-center">
-            <div className="text-sm font-semibold">$5,240</div>
+            <div className="text-sm font-semibold">₹3,98,240</div>
             <div className="text-xs text-gray-500">Earnings</div>
           </div>
           <div className="text-center">

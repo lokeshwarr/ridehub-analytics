@@ -15,7 +15,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-2 gap-3 mb-4">
         <StatCard
           title="Today's Earnings"
-          value="$142.50"
+          value="₹8,560.50"
           icon={<DollarSign className="h-5 w-5 text-ridehub-primary" />}
           trend={{ value: "12%", positive: true }}
         />
@@ -48,25 +48,25 @@ const Dashboard = () => {
         <PlatformCard
           name="BlueBike"
           isHot={true}
-          price="$5.20/ride"
+          price="₹350/ride"
           demand="high"
-          earnings="$18-24/h"
+          earnings="₹1,200-1,600/h"
           color="#1976D2"
         />
         <PlatformCard
           name="GreenRide"
           isHot={false}
-          price="$4.80/ride"
+          price="₹320/ride"
           demand="medium"
-          earnings="$15-19/h"
+          earnings="₹950-1,250/h"
           color="#4CAF50"
         />
         <PlatformCard
           name="CityScoot"
           isHot={false}
-          price="$4.50/ride"
+          price="₹300/ride"
           demand="low"
-          earnings="$13-17/h"
+          earnings="₹850-1,100/h"
           color="#FF9800"
         />
       </div>

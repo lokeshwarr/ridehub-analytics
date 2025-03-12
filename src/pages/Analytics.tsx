@@ -15,7 +15,7 @@ const Analytics = () => {
       <div className="grid grid-cols-2 gap-3 mb-4">
         <StatCard
           title="Total Earnings"
-          value="$856.42"
+          value="₹65,240.42"
           icon={<DollarSign className="h-5 w-5 text-ridehub-primary" />}
           trend={{ value: "8%", positive: true }}
         />
@@ -32,9 +32,9 @@ const Analytics = () => {
         />
         <StatCard
           title="Avg. Per Ride"
-          value="$20.39"
+          value="₹1,553.82"
           icon={<CreditCard className="h-5 w-5 text-purple-500" />}
-          trend={{ value: "1.20", positive: true }}
+          trend={{ value: "₹90", positive: true }}
         />
       </div>
       
@@ -51,7 +51,7 @@ const Analytics = () => {
               <span className="text-sm">BlueBike</span>
             </div>
             <div className="flex items-center">
-              <span className="text-sm font-medium mr-2">$412.60</span>
+              <span className="text-sm font-medium mr-2">₹31,320.60</span>
               <span className="text-xs text-gray-500">48%</span>
             </div>
           </div>
@@ -67,7 +67,7 @@ const Analytics = () => {
               <span className="text-sm">GreenRide</span>
             </div>
             <div className="flex items-center">
-              <span className="text-sm font-medium mr-2">$267.82</span>
+              <span className="text-sm font-medium mr-2">₹20,223.82</span>
               <span className="text-xs text-gray-500">31%</span>
             </div>
           </div>
@@ -83,7 +83,7 @@ const Analytics = () => {
               <span className="text-sm">CityScoot</span>
             </div>
             <div className="flex items-center">
-              <span className="text-sm font-medium mr-2">$176.00</span>
+              <span className="text-sm font-medium mr-2">₹13,696.00</span>
               <span className="text-xs text-gray-500">21%</span>
             </div>
           </div>

@@ -31,9 +31,9 @@ const EarningsChart = () => {
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
             <XAxis dataKey="name" scale="point" axisLine={false} tickLine={false} tickMargin={8} tick={{ fontSize: 10 }} />
-            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10 }} tickFormatter={(value) => `$${value}`} />
+            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10 }} tickFormatter={(value) => `₹${value}`} />
             <Tooltip 
-              formatter={(value: number) => [`$${value}`, '']}
+              formatter={(value: number) => [`₹${value}`, '']}
               itemStyle={{ fontSize: 12, padding: 0, margin: 0 }}
               contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', padding: '8px 12px' }}
             />
