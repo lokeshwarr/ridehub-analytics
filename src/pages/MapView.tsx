@@ -4,12 +4,23 @@ import Header from '@/components/Header';
 import DemandMap from '@/components/DemandMap';
 import { Button } from '@/components/ui/button';
 import { Bike, Navigation, Layers, Circle, ArrowRight } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const MapView = () => {
   const [activePlatform, setActivePlatform] = useState<string | null>(null);
+  const { toast } = useToast();
   
   const handlePlatformFilter = (platform: string) => {
     setActivePlatform(activePlatform === platform ? null : platform);
+  };
+  
+  const handleAcceptRide = (rideId: number, platform: string) => {
+    // In a real app, this would make an API call to accept the ride
+    toast({
+      title: "Ride Accepted",
+      description: `You've accepted a ride from ${platform}. A notification has been sent to the rider.`,
+      variant: "default",
+    });
   };
   
   const nearbyRides = [
@@ -139,6 +150,7 @@ const MapView = () => {
                   variant="outline" 
                   size="sm" 
                   className="text-xs h-7 bg-ridehub-primary text-white border-0 hover:bg-ridehub-primary/90"
+                  onClick={() => handleAcceptRide(ride.id, ride.platform)}
                 >
                   Accept Ride
                 </Button>
