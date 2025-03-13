@@ -1,11 +1,44 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Bike, Star, Award, Clock, Settings, LogOut, CreditCard, Bell, Shield } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 const Profile = () => {
+  const navigate = useNavigate();
+  
+  const handleEditProfile = () => {
+    toast({
+      title: "Profile Update",
+      description: "Profile editing will be available soon!",
+      duration: 3000,
+    });
+  };
+  
+  const handleSettingClick = (setting: string) => {
+    toast({
+      title: `${setting}`,
+      description: "This feature will be available soon!",
+      duration: 3000,
+    });
+  };
+  
+  const handleSignOut = () => {
+    toast({
+      title: "Signing Out",
+      description: "You have been signed out successfully",
+      duration: 3000,
+    });
+    
+    // Simulate logout by redirecting to home after a delay
+    setTimeout(() => {
+      navigate('/');
+    }, 1500);
+  };
+  
   return (
     <div className="pb-20">
       <Header title="Profile" />
@@ -47,7 +80,7 @@ const Profile = () => {
           </div>
         </div>
         
-        <Button className="bg-ridehub-primary hover:bg-ridehub-primary/90">Edit Profile</Button>
+        <Button className="bg-ridehub-primary hover:bg-ridehub-primary/90" onClick={handleEditProfile}>Edit Profile</Button>
       </div>
       
       {/* Badges section */}
@@ -84,7 +117,7 @@ const Profile = () => {
       {/* Settings list */}
       <h3 className="font-medium text-gray-700 mb-2">Settings</h3>
       <Card className="divide-y">
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4" onClick={() => handleSettingClick("Payment Methods")}>
           <div className="flex items-center">
             <CreditCard className="h-5 w-5 text-gray-500 mr-3" />
             <span>Payment Methods</span>
@@ -93,7 +126,7 @@ const Profile = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </div>
         </div>
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4" onClick={() => handleSettingClick("Notifications")}>
           <div className="flex items-center">
             <Bell className="h-5 w-5 text-gray-500 mr-3" />
             <span>Notifications</span>
@@ -102,7 +135,7 @@ const Profile = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </div>
         </div>
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4" onClick={() => handleSettingClick("Privacy & Security")}>
           <div className="flex items-center">
             <Shield className="h-5 w-5 text-gray-500 mr-3" />
             <span>Privacy & Security</span>
@@ -111,7 +144,7 @@ const Profile = () => {
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </div>
         </div>
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4" onClick={() => navigate('/settings')}>
           <div className="flex items-center">
             <Settings className="h-5 w-5 text-gray-500 mr-3" />
             <span>App Settings</span>
@@ -124,7 +157,7 @@ const Profile = () => {
       
       {/* Logout button */}
       <div className="mt-6">
-        <Button variant="outline" className="w-full border-red-200 text-red-500 hover:bg-red-50">
+        <Button variant="outline" className="w-full border-red-200 text-red-500 hover:bg-red-50" onClick={handleSignOut}>
           <LogOut className="h-4 w-4 mr-2" /> Sign Out
         </Button>
       </div>
