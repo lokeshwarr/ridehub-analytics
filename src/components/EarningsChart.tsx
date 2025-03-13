@@ -5,13 +5,13 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 const EarningsChart = () => {
   // Sample data
   const data = [
-    { name: 'Mon', BlueBike: 120, GreenRide: 80, CityScoot: 50 },
-    { name: 'Tue', BlueBike: 100, GreenRide: 100, CityScoot: 80 },
-    { name: 'Wed', BlueBike: 140, GreenRide: 90, CityScoot: 70 },
-    { name: 'Thu', BlueBike: 170, GreenRide: 60, CityScoot: 110 },
-    { name: 'Fri', BlueBike: 190, GreenRide: 120, CityScoot: 130 },
-    { name: 'Sat', BlueBike: 220, GreenRide: 170, CityScoot: 140 },
-    { name: 'Sun', BlueBike: 180, GreenRide: 150, CityScoot: 100 },
+    { name: 'Mon', Uber: 1200, Ola: 800, Rapido: 500 },
+    { name: 'Tue', Uber: 1000, Ola: 1000, Rapido: 800 },
+    { name: 'Wed', Uber: 1400, Ola: 900, Rapido: 700 },
+    { name: 'Thu', Uber: 1700, Ola: 600, Rapido: 1100 },
+    { name: 'Fri', Uber: 1900, Ola: 1200, Rapido: 1300 },
+    { name: 'Sat', Uber: 2200, Ola: 1700, Rapido: 1400 },
+    { name: 'Sun', Uber: 1800, Ola: 1500, Rapido: 1000 },
   ];
 
   return (
@@ -37,9 +37,9 @@ const EarningsChart = () => {
               itemStyle={{ fontSize: 12, padding: 0, margin: 0 }}
               contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', padding: '8px 12px' }}
             />
-            <Bar dataKey="BlueBike" fill="#1976D2" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="GreenRide" fill="#4CAF50" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="CityScoot" fill="#FF9800" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="Uber" fill="#e74c3c" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="Ola" fill="#4CAF50" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="Rapido" fill="#FF9800" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
