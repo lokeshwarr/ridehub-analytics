@@ -1,14 +1,15 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import DemandMap from '@/components/DemandMap';
 import { Button } from '@/components/ui/button';
 import { Bike, Navigation, Layers, Circle, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const MapView = () => {
   const [activePlatform, setActivePlatform] = useState<string | null>(null);
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const handlePlatformFilter = (platform: string) => {
     setActivePlatform(activePlatform === platform ? null : platform);
@@ -21,6 +22,10 @@ const MapView = () => {
       description: `You've accepted a ride from ${platform}. A notification has been sent to the rider.`,
       variant: "default",
     });
+  };
+  
+  const navigateToProfile = () => {
+    navigate('/profile');
   };
   
   const nearbyRides = [

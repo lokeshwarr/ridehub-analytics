@@ -20,7 +20,10 @@ const MobileNavbar = ({ activePath }: MobileNavbarProps) => {
   ];
 
   const handleNavClick = (path: string) => {
-    navigate(path);
+    // Prevent re-navigation to the same route to avoid glitch effect
+    if (activePath !== path) {
+      navigate(path);
+    }
   };
 
   return (
@@ -38,6 +41,7 @@ const MobileNavbar = ({ activePath }: MobileNavbarProps) => {
                   ? 'text-ridehub-primary'
                   : 'text-gray-500 hover:text-ridehub-primary'
               )}
+              aria-label={item.label}
             >
               <item.icon
                 className={cn(
