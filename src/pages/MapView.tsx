@@ -1,10 +1,12 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import DemandMap from '@/components/DemandMap';
 import { Button } from '@/components/ui/button';
-import { Bike, Navigation, Layers, Circle, ArrowRight } from 'lucide-react';
+import { Bike } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useNavigate } from 'react-router-dom';
+import MobileNavbar from '@/components/MobileNavbar';
 
 const MapView = () => {
   const [activePlatform, setActivePlatform] = useState<string | null>(null);
@@ -24,6 +26,7 @@ const MapView = () => {
     });
   };
   
+  // Function to navigate to profile
   const navigateToProfile = () => {
     navigate('/profile');
   };
@@ -83,85 +86,90 @@ const MapView = () => {
   };
 
   return (
-    <div className="pb-20">
-      <Header title="Ride Requests" />
-      
-      <DemandMap />
-      
-      {/* Filter options */}
-      <div className="flex space-x-2 mb-4 overflow-x-auto pb-2">
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className={`flex-shrink-0 rounded-full ${activePlatform === null ? 'bg-white border-ridehub-primary text-ridehub-primary' : ''}`}
-          onClick={() => setActivePlatform(null)}
-        >
-          All Platforms
-        </Button>
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className={`flex-shrink-0 rounded-full ${activePlatform === 'Uber' ? 'bg-white border-ridehub-primary text-ridehub-primary' : ''}`}
-          onClick={() => handlePlatformFilter('Uber')}
-        >
-          Uber
-        </Button>
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className={`flex-shrink-0 rounded-full ${activePlatform === 'Ola' ? 'bg-white border-ridehub-primary text-ridehub-primary' : ''}`}
-          onClick={() => handlePlatformFilter('Ola')}
-        >
-          Ola
-        </Button>
-        <Button 
-          variant="outline" 
-          size="sm" 
-          className={`flex-shrink-0 rounded-full ${activePlatform === 'Rapido' ? 'bg-white border-ridehub-primary text-ridehub-primary' : ''}`}
-          onClick={() => handlePlatformFilter('Rapido')}
-        >
-          Rapido
-        </Button>
-      </div>
-      
-      {/* Nearby rides */}
-      <h3 className="font-medium text-gray-700 mb-2">Nearby Ride Requests</h3>
-      <div className="space-y-3">
-        {nearbyRides
-          .filter(ride => activePlatform === null || ride.platform === activePlatform)
-          .map(ride => (
-            <div key={ride.id} className="bg-white rounded-xl p-3 shadow-sm">
-              <div className="flex justify-between items-center">
-                <div>
-                  <div className="flex items-center">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${getPlatformColor(ride.platform)}`}>
-                      <Bike className="h-3 w-3" />
+    <div className="bg-ridehub-background min-h-screen">
+      <div className="container px-4 py-4 pb-20 max-w-md mx-auto">
+        <div className="pb-20">
+          <Header title="Ride Requests" />
+          
+          <DemandMap />
+          
+          {/* Filter options */}
+          <div className="flex space-x-2 mb-4 overflow-x-auto pb-2">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className={`flex-shrink-0 rounded-full ${activePlatform === null ? 'bg-white border-ridehub-primary text-ridehub-primary' : ''}`}
+              onClick={() => setActivePlatform(null)}
+            >
+              All Platforms
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className={`flex-shrink-0 rounded-full ${activePlatform === 'Uber' ? 'bg-white border-ridehub-primary text-ridehub-primary' : ''}`}
+              onClick={() => handlePlatformFilter('Uber')}
+            >
+              Uber
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className={`flex-shrink-0 rounded-full ${activePlatform === 'Ola' ? 'bg-white border-ridehub-primary text-ridehub-primary' : ''}`}
+              onClick={() => handlePlatformFilter('Ola')}
+            >
+              Ola
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className={`flex-shrink-0 rounded-full ${activePlatform === 'Rapido' ? 'bg-white border-ridehub-primary text-ridehub-primary' : ''}`}
+              onClick={() => handlePlatformFilter('Rapido')}
+            >
+              Rapido
+            </Button>
+          </div>
+          
+          {/* Nearby rides */}
+          <h3 className="font-medium text-gray-700 mb-2">Nearby Ride Requests</h3>
+          <div className="space-y-3">
+            {nearbyRides
+              .filter(ride => activePlatform === null || ride.platform === activePlatform)
+              .map(ride => (
+                <div key={ride.id} className="bg-white rounded-xl p-3 shadow-sm">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <div className="flex items-center">
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-2 ${getPlatformColor(ride.platform)}`}>
+                          <Bike className="h-3 w-3" />
+                        </div>
+                        <span className="font-medium">{ride.location}</span>
+                        <span className="ml-2 text-xs font-medium px-2 py-0.5 rounded bg-gray-100 text-gray-600">
+                          {ride.platform}
+                        </span>
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {ride.distance} miles away • {ride.riders} {ride.riders > 1 ? 'riders' : 'rider'} • <span className="font-semibold">{ride.fare}</span>
+                      </div>
                     </div>
-                    <span className="font-medium">{ride.location}</span>
-                    <span className="ml-2 text-xs font-medium px-2 py-0.5 rounded bg-gray-100 text-gray-600">
-                      {ride.platform}
-                    </span>
+                    <div className={`${getDemandBadge(ride.demand)} text-xs font-medium px-2 py-0.5 rounded flex items-center`}>
+                      {ride.demand}
+                    </div>
                   </div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    {ride.distance} miles away • {ride.riders} {ride.riders > 1 ? 'riders' : 'rider'} • <span className="font-semibold">{ride.fare}</span>
+                  <div className="mt-2 flex justify-end">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="text-xs h-7 bg-ridehub-primary text-white border-0 hover:bg-ridehub-primary/90"
+                      onClick={() => handleAcceptRide(ride.id, ride.platform)}
+                    >
+                      Accept Ride
+                    </Button>
                   </div>
                 </div>
-                <div className={`${getDemandBadge(ride.demand)} text-xs font-medium px-2 py-0.5 rounded flex items-center`}>
-                  {ride.demand}
-                </div>
-              </div>
-              <div className="mt-2 flex justify-end">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="text-xs h-7 bg-ridehub-primary text-white border-0 hover:bg-ridehub-primary/90"
-                  onClick={() => handleAcceptRide(ride.id, ride.platform)}
-                >
-                  Accept Ride
-                </Button>
-              </div>
-            </div>
-          ))}
+              ))}
+          </div>
+        </div>
+        <MobileNavbar activePath="/map" />
       </div>
     </div>
   );
