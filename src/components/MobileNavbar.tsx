@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Map, LineChart, User, Settings, Compass } from 'lucide-react';
+import { LayoutDashboard, LineChart, User, Settings, Compass } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface MobileNavbarProps {
@@ -13,7 +13,6 @@ const MobileNavbar = ({ activePath }: MobileNavbarProps) => {
   
   const navItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
-    { icon: Map, label: 'Map', path: '/map' },
     { icon: Compass, label: 'Explore', path: '/explore' },
     { icon: LineChart, label: 'Analytics', path: '/analytics' },
     { icon: User, label: 'Profile', path: '/profile' },

@@ -25,17 +25,31 @@ const EarningsChart = () => {
               top: 10,
               right: 10,
               left: -20,
-              bottom: 0,
+              bottom: 5, // Increased bottom margin for better day visibility
             }}
             barSize={12}
           >
             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-            <XAxis dataKey="name" scale="point" axisLine={false} tickLine={false} tickMargin={8} tick={{ fontSize: 10 }} />
-            <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10 }} tickFormatter={(value) => `₹${value}`} />
+            <XAxis 
+              dataKey="name" 
+              scale="point" 
+              axisLine={false} 
+              tickLine={false} 
+              tickMargin={8} 
+              tick={{ fontSize: 10, fill: '#4a5568' }} // Enhanced visibility of day labels
+              stroke="#e2e8f0"
+            />
+            <YAxis 
+              axisLine={false} 
+              tickLine={false} 
+              tick={{ fontSize: 10 }} 
+              tickFormatter={(value) => `₹${value}`}
+            />
             <Tooltip 
               formatter={(value: number) => [`₹${value}`, '']}
               itemStyle={{ fontSize: 12, padding: 0, margin: 0 }}
               contentStyle={{ borderRadius: 8, border: '1px solid #e2e8f0', padding: '8px 12px' }}
+              labelStyle={{ fontWeight: 'bold', marginBottom: '4px' }}
             />
             <Bar dataKey="Uber" fill="#e74c3c" radius={[4, 4, 0, 0]} />
             <Bar dataKey="Ola" fill="#4CAF50" radius={[4, 4, 0, 0]} />

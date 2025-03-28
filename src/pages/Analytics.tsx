@@ -1,16 +1,36 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import EarningsChart from '@/components/EarningsChart';
 import StatCard from '@/components/StatCard';
-import { DollarSign, TrendingUp, MapPin, CreditCard, Calendar } from 'lucide-react';
+import { DollarSign, TrendingUp, MapPin, CreditCard, Calendar, MessageSquare, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MobileNavbar from '@/components/MobileNavbar';
 import { useLocation } from 'react-router-dom';
 import AppBanner from '@/components/AppBanner';
+import { Textarea } from '@/components/ui/textarea';
+import { toast } from '@/hooks/use-toast';
 
 const Analytics = () => {
   const [period, setPeriod] = useState<'daily' | 'weekly' | 'monthly'>('weekly');
+  const [feedbackText, setFeedbackText] = useState('');
   const location = useLocation();
+  
+  const handleSubmitFeedback = () => {
+    if (feedbackText.trim()) {
+      toast({
+        title: "Feedback Submitted",
+        description: "Thank you for your feedback! We'll review it shortly.",
+      });
+      setFeedbackText('');
+    } else {
+      toast({
+        title: "Empty Feedback",
+        description: "Please enter your feedback before submitting.",
+        variant: "destructive",
+      });
+    }
+  };
   
   return (
     <div className="bg-ridehub-background min-h-screen bg-[url('https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=1000&q=80')] bg-cover bg-fixed bg-center">
@@ -80,6 +100,20 @@ const Analytics = () => {
             
             {/* Earnings chart */}
             <EarningsChart />
+            
+            {/* Days of week indicators */}
+            <div className="mt-2 mb-4">
+              <h4 className="text-xs font-medium text-gray-500 mb-1">Days of Week</h4>
+              <div className="flex justify-between">
+                <div className="text-xs text-gray-600">Mon</div>
+                <div className="text-xs text-gray-600">Tue</div>
+                <div className="text-xs text-gray-600">Wed</div>
+                <div className="text-xs text-gray-600">Thu</div>
+                <div className="text-xs text-gray-600">Fri</div>
+                <div className="text-xs text-gray-600">Sat</div>
+                <div className="text-xs text-gray-600">Sun</div>
+              </div>
+            </div>
             
             {/* Platform breakdown */}
             <h3 className="font-medium text-gray-700 mt-4 mb-2">Platform Breakdown</h3>
@@ -167,6 +201,38 @@ const Analytics = () => {
               <div className="flex justify-between items-center mt-3 text-xs text-gray-500">
                 <div>Highest: ₹3,250 (Oct 12)</div>
                 <div>Lowest: ₹1,320 (Oct 5)</div>
+              </div>
+            </div>
+            
+            {/* Feedback section */}
+            <h3 className="font-medium text-gray-700 mt-4 mb-2 flex items-center gap-2">
+              <MessageSquare className="h-4 w-4" /> Feedback
+            </h3>
+            <div className="bg-white rounded-xl p-4 shadow-sm">
+              <p className="text-sm text-gray-600 mb-2">Help us improve our service by sharing your experience!</p>
+              <Textarea 
+                placeholder="Your feedback is valuable to us..." 
+                className="mb-2 h-24"
+                value={feedbackText}
+                onChange={(e) => setFeedbackText(e.target.value)}
+              />
+              <div className="flex items-center justify-between">
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((rating) => (
+                    <Star 
+                      key={rating} 
+                      className="h-5 w-5 text-gray-300 hover:text-yellow-500 cursor-pointer"
+                      onClick={() => toast({ title: `Rating: ${rating} stars` })}
+                    />
+                  ))}
+                </div>
+                <Button 
+                  size="sm" 
+                  onClick={handleSubmitFeedback}
+                  className="bg-ridehub-primary hover:bg-ridehub-primary/90"
+                >
+                  Submit Feedback
+                </Button>
               </div>
             </div>
           </div>
